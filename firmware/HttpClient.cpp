@@ -63,23 +63,30 @@ void HttpClient::request(http_request_t &aRequest, http_response_t &aResponse, h
     // http_request_t request = {0} or memset(&request, 0, sizeof(http_request_t)) should be used
     // to ensure all fields are zero
     bool connected = false;
+    
+    #ifdef LOGGING
+    if(aRequest.hostname!=NULL) {
+        Serial.print("HttpClient>\tConnecting to: ");
+        Serial.print(aRequest.hostname);
+    } else {
+        Serial.print("HttpClient>\tConnecting to IP: ");
+        Serial.print(aRequest.ip);
+    }
+    Serial.print(":");
+    Serial.println(aRequest.port);
+    #endif
+
+    
     if(aRequest.hostname!=NULL) {
         connected = client.connect(aRequest.hostname.c_str(), (aRequest.port) ? aRequest.port : 80 );
     }   else {
         connected = client.connect(aRequest.ip, aRequest.port);
     }
-
+    delay(1000);
+    
     #ifdef LOGGING
     if (connected) {
-        if(aRequest.hostname!=NULL) {
-            Serial.print("HttpClient>\tConnecting to: ");
-            Serial.print(aRequest.hostname);
-        } else {
-            Serial.print("HttpClient>\tConnecting to IP: ");
-            Serial.print(aRequest.ip);
-        }
-        Serial.print(":");
-        Serial.println(aRequest.port);
+        Serial.println("HttpClient>\tSuccessfully Connected.");
     } else {
         Serial.println("HttpClient>\tConnection failed.");
     }

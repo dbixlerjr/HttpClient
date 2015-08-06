@@ -85,14 +85,14 @@ void HttpClient::request(http_request_t &aRequest, http_response_t &aResponse, h
     delay(1000);
     
     #ifdef LOGGING
-    if (connected) {
+    if (client.connected()) {
         Serial.println("HttpClient>\tSuccessfully Connected.");
     } else {
         Serial.println("HttpClient>\tConnection failed.");
     }
     #endif
 
-    if (!connected) {
+    if (!client.connected()) {
         client.stop();
         // If TCP Client can't connect to host, exit here.
         return;

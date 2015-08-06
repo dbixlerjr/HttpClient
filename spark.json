@@ -3,5 +3,5 @@
   "author": "Nils Mattisson <nils.mattisson@gmail.com>",
   "license": "MIT",
   "version": "0.0.2",
-  "description": "A work in progress Http Client Library for the Spark Core and Arduino."
+  "description": "A work in progress Http Client Library for the Photon."
 }

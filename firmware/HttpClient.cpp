@@ -82,7 +82,7 @@ void HttpClient::request(http_request_t &aRequest, http_response_t &aResponse, h
     }   else {
         connected = client.connect(aRequest.ip, aRequest.port);
     }
-    Serial.print("")
+    Serial.print("client.connect results: ");
     Serial.println(connected);
     delay(1000);
     

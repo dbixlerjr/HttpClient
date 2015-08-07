@@ -77,9 +77,8 @@ void HttpClient::request(http_request_t &aRequest, http_response_t &aResponse, h
     #endif
 
     //Hopefully this takes care of bug in the Photon where it crashes if it can't get to the server.
-	TCPClient client;
-	client.connect("google.com", 80);
-	client.stop();
+    client.connect("google.com", 80);
+    client.stop();
 
     
     if(aRequest.hostname!=NULL) {

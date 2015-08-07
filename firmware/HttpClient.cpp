@@ -82,10 +82,7 @@ void HttpClient::request(http_request_t &aRequest, http_response_t &aResponse, h
     }   else {
         connected = client.connect(aRequest.ip, aRequest.port);
     }
-    Serial.print("client.connect results: ");
-    Serial.println(connected);
-    delay(1000);
-    
+
     #ifdef LOGGING
     if (connected) {
         Serial.println("HttpClient>\tSuccessfully Connected.");
@@ -95,11 +92,10 @@ void HttpClient::request(http_request_t &aRequest, http_response_t &aResponse, h
     #endif
 
     if (!connected) {
-        //client.stop();
+        client.stop();
         // If TCP Client can't connect to host, exit here.
         return;
     }
-    delay(1000);
     //
     // Send HTTP Headers
     //
